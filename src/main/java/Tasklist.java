@@ -31,7 +31,7 @@ public class Tasklist {
     }
 
     void completeTask(int taskNumber) {
-        this.tasklist.get(taskNumber - 1).completeTask();
+        this.tasklist.get(taskNumber - 1).markAsDone();
         this.printer.printBorder();
         this.printer.print("Nice! I've marked this task as done:");
         this.printer.print(this.tasklist.get(taskNumber-1).getStatusIcon() + " " + this.tasklist.get(taskNumber-1).getTaskName());

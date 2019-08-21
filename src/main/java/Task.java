@@ -7,7 +7,7 @@ public class Task {
         this.isDone = false;
     }
 
-    public void completeTask() {
+    public void markAsDone() {
         this.isDone = true;
     }
 
