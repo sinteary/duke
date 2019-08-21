@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Duke {
     public static void main(String[] args) {
         Printer printer = new Printer();
+        Tasklist tasklist = new Tasklist();
+
         printer.greet();
         Scanner scanner = new Scanner(System.in);
         boolean continueReading = true;
@@ -13,7 +15,7 @@ public class Duke {
                     continueReading = false;
                     break;
                 default:
-                    printer.print(userInput);
+                    tasklist.addTask(userInput);
             }
         }
         printer.exit();
