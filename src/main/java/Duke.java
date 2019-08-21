@@ -19,10 +19,15 @@ public class Duke {
                     break;
                 default:
                     if ((userInput.length() > 4) && (userInput.substring(0, 4).equals("done"))) {
-                            Scanner sc = new Scanner(userInput);
-                            String dummy = sc.next();
-                            int taskNumber = sc.nextInt();
+                        Scanner sc = new Scanner(userInput);
+                        String dummy = sc.next();
+                        int taskNumber = sc.nextInt();
+                        try {
                             tasklist.completeTask(taskNumber);
+                        }
+                        catch (IndexOutOfBoundsException e){
+                            printer.print("Task " + taskNumber + " does not exist");
+                        }
                     }
                     else tasklist.addTask(userInput);
             }
