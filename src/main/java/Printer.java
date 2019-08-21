@@ -1,4 +1,12 @@
 public class Printer {
+    String border = "     ____________________________________________________________";
+    String indentation = "      ";
+
+    void print(String message) {
+        System.out.println(border);
+        System.out.println(indentation + message);
+        System.out.println(border);
+    }
 
     void greet() {
         /*String logo = " ____        _        \n"
@@ -7,15 +15,10 @@ public class Printer {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);*/
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
-    }
-
-    void print(String message) {
-        System.out.println(message);
+        this.print("Hello! I'm Duke\n" + indentation + "What can I do for you?");
     }
 
     void exit() {
-        System.out.println("Bye. Hope to see you again soon!");
+        this.print("Bye. Hope to see you again soon!");
     }
-
 }

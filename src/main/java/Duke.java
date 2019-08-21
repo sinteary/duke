@@ -8,8 +8,13 @@ public class Duke {
         boolean continueReading = true;
         while (continueReading) {
             String userInput = scanner.nextLine();
-            if (userInput.equals("bye")) continueReading = false;
-            else printer.print(userInput);
+            switch (userInput) {
+                case "bye":
+                    continueReading = false;
+                    break;
+                default:
+                    printer.print(userInput);
+            }
         }
         printer.exit();
     }
