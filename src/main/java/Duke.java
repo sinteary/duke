@@ -18,11 +18,11 @@ public class Duke {
                     tasklist.listTasks();
                     break;
                 default:
-                    if (userInput.substring(0, 4).equals("done")) {
-                        Scanner sc = new Scanner (userInput);
-                        String dummy = sc.next();
-                        int taskNumber = sc.nextInt();
-                        tasklist.completeTask(taskNumber);
+                    if ((userInput.length() > 4) && (userInput.substring(0, 4).equals("done"))) {
+                            Scanner sc = new Scanner(userInput);
+                            String dummy = sc.next();
+                            int taskNumber = sc.nextInt();
+                            tasklist.completeTask(taskNumber);
                     }
                     else tasklist.addTask(userInput);
             }
