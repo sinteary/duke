@@ -2,10 +2,12 @@ public class Printer {
     String border = "     ____________________________________________________________";
     String indentation = "      ";
 
+    void printBorder() {
+        System.out.println(border);
+    }
+
     void print(String message) {
-        System.out.println(border);
         System.out.println(indentation + message);
-        System.out.println(border);
     }
 
     void greet() {
@@ -15,10 +17,14 @@ public class Printer {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);*/
+        this.printBorder();
         this.print("Hello! I'm Duke\n" + indentation + "What can I do for you?");
+        this.printBorder();
     }
 
     void exit() {
+        this.printBorder();
         this.print("Bye. Hope to see you again soon!");
+        this.printBorder();
     }
 }

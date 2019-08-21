@@ -14,6 +14,9 @@ public class Duke {
                 case "bye":
                     continueReading = false;
                     break;
+                case "list":
+                    tasklist.listTasks();
+                    break;
                 default:
                     tasklist.addTask(userInput);
             }

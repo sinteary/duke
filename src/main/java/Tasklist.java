@@ -12,7 +12,9 @@ public class Tasklist {
 
     void addTask(String taskName) {
         this.tasklist.add(taskName);
+        this.printer.printBorder();
         this.printer.print("added: " + taskName);
+        this.printer.printBorder();
     }
 
     int numberOfTasks() {
@@ -20,8 +22,10 @@ public class Tasklist {
     }
 
     void listTasks() {
+        this.printer.printBorder();
         for (int i = 1; i <= this.numberOfTasks(); i++) {
-            System.out.println(i + ". " + this.tasklist.get(i-1));
+            this.printer.print(i + ". " + this.tasklist.get(i-1));
         }
+        this.printer.printBorder();
     }
 }
