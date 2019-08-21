@@ -23,8 +23,9 @@ public class Tasklist {
 
     void listTasks() {
         this.printer.printBorder();
+        this.printer.print("Here are the tasks in your list:");
         for (int i = 1; i <= this.numberOfTasks(); i++) {
-            this.printer.print(i + ". " + this.tasklist.get(i-1).taskName);
+            this.printer.print(i + "." + this.tasklist.get(i-1).getStatusIcon() + " " + this.tasklist.get(i-1).taskName);
         }
         this.printer.printBorder();
     }

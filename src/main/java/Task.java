@@ -11,4 +11,8 @@ public class Task {
         this.isDone = true;
     }
 
+    public String getStatusIcon() {
+        return ("[" + (this.isDone ? "\u2713" : "\u2718") + "]");
+    }
+
 }
