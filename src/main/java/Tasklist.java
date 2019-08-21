@@ -29,4 +29,12 @@ public class Tasklist {
         }
         this.printer.printBorder();
     }
+
+    void completeTask(int taskNumber) {
+        this.tasklist.get(taskNumber - 1).completeTask();
+        this.printer.printBorder();
+        this.printer.print("Nice! I've marked this task as done:");
+        this.printer.print(this.tasklist.get(taskNumber-1).getStatusIcon() + " " + this.tasklist.get(taskNumber-1).getTaskName());
+        this.printer.printBorder();
+    }
 }
