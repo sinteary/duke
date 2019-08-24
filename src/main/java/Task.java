@@ -1,6 +1,7 @@
-public class Task {
+public abstract class Task {
     protected String taskName;
     protected boolean isDone;
+    protected TaskType tasktype;
 
     public Task(String taskName) {
         this.taskName = taskName;
@@ -18,5 +19,7 @@ public class Task {
     public String getTaskName() {
         return this.taskName;
     }
+
+    abstract String getType();
 
 }

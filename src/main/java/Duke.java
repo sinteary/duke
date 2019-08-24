@@ -9,7 +9,7 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         boolean continueReading = true;
         while (continueReading) {
-            String userInput = scanner.nextLine();
+            String userInput = scanner.next();
             switch (userInput) {
                 case "bye":
                     continueReading = false;
@@ -17,17 +17,20 @@ public class Duke {
                 case "list":
                     tasklist.listTasks();
                     break;
-                default:
-                    String[] splitString = userInput.split(" ", 0);
-                    if (splitString[0].equals("done")) {
-                        int taskNumber = Integer.parseInt(splitString[1]);
-                        try {
-                            tasklist.completeTask(taskNumber);
-                        } catch (IndexOutOfBoundsException e) {
-                            printer.print("Task " + taskNumber + " does not exist");
-                        }
+                case "done":
+                    int taskNumber = scanner.nextInt();
+                    try {
+                        tasklist.completeTask(taskNumber);
+                    } catch (IndexOutOfBoundsException e) {
+                        printer.print("Task " + taskNumber + " does not exist");
                     }
-                    else tasklist.addTask(userInput);
+                    break;
+                case "todo":
+                     String toDoName = scanner.nextLine();
+                     tasklist.addTask(toDoName);
+                    break;
+
+
             }
         }
         printer.exit();

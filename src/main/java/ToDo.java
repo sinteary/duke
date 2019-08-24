@@ -1,9 +1,13 @@
 public class ToDo extends Task {
-    private TaskType tasktype;
+    protected TaskType tasktype;
 
     public ToDo(String toDoName) {
         super(toDoName);
-        this.tasktype = TaskType.TODO;
+        super.tasktype = TaskType.T;
     }
 
+    @Override
+    String getType() {
+        return "[T]";
+    }
 }

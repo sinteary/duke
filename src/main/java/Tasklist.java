@@ -11,9 +11,12 @@ public class Tasklist {
     }
 
     void addTask(String taskName) {
-        this.tasklist.add(new Task(taskName));
+        ToDo toDo = new ToDo(taskName);
+        this.tasklist.add(toDo);
         this.printer.printBorder();
-        this.printer.print("added: " + taskName);
+        this.printer.print("Got it. I've added this task:");
+        this.printer.printToDo(toDo);
+        this.printer.print("Now you have " + this.numberOfTasks() + " tasks in the list.");
         this.printer.printBorder();
     }
 
