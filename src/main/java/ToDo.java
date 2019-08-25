@@ -3,11 +3,12 @@ public class ToDo extends Task {
 
     public ToDo(String toDoName) {
         super(toDoName);
-        super.tasktype = TaskType.T;
+        super.tasktype = TaskType.TODO;
     }
 
     @Override
-    String getType() {
-        return "[T]";
+    public String getTaskDescription() {
+        return "[T]" + super.getTaskDescription();
     }
+
 }

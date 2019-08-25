@@ -15,7 +15,7 @@ public class Tasklist {
         this.tasklist.add(toDo);
         this.printer.printBorder();
         this.printer.print("Got it. I've added this task:");
-        this.printer.printToDo(toDo);
+        this.printer.print(toDo.getTaskDescription());
         this.printer.print("Now you have " + this.numberOfTasks() + " tasks in the list.");
         this.printer.printBorder();
     }
@@ -28,7 +28,7 @@ public class Tasklist {
         this.printer.printBorder();
         this.printer.print("Here are the tasks in your list:");
         for (int i = 1; i <= this.numberOfTasks(); i++) {
-            this.printer.print(i + "." + this.tasklist.get(i-1).getStatusIcon() + " " + this.tasklist.get(i-1).taskName);
+            this.printer.print(i + ". " + this.tasklist.get(i-1).getTaskDescription());
         }
         this.printer.printBorder();
     }
@@ -37,7 +37,7 @@ public class Tasklist {
         this.tasklist.get(taskNumber - 1).markAsDone();
         this.printer.printBorder();
         this.printer.print("Nice! I've marked this task as done:");
-        this.printer.print(this.tasklist.get(taskNumber-1).getStatusIcon() + " " + this.tasklist.get(taskNumber-1).getTaskName());
+        this.printer.print(this.tasklist.get(taskNumber-1).getTaskDescription());
         this.printer.printBorder();
     }
 }

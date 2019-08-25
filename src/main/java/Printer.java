@@ -10,10 +10,6 @@ public class Printer {
         System.out.println(indentation + message);
     }
 
-    void printToDo(Task task) {
-        System.out.println(indentation + task.getType() + task.getStatusIcon() + " " + task.getTaskName());
-    }
-
     void greet() {
         /*String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
