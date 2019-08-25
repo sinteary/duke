@@ -13,9 +13,19 @@ public class Tasklist {
     void addTask(String taskName) {
         ToDo toDo = new ToDo(taskName);
         this.tasklist.add(toDo);
+        this.printTaskDescription(toDo);
+    }
+
+    void addDeadline(String taskName, String deadlineDate) {
+        Deadline deadline = new Deadline(taskName, deadlineDate);
+        this.tasklist.add(deadline);
+        this.printTaskDescription(deadline);
+    }
+
+    void printTaskDescription(Task task) {
         this.printer.printBorder();
         this.printer.print("Got it. I've added this task:");
-        this.printer.print(toDo.getTaskDescription());
+        this.printer.print(task.getTaskDescription());
         this.printer.print("Now you have " + this.numberOfTasks() + " tasks in the list.");
         this.printer.printBorder();
     }
