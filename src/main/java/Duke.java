@@ -20,32 +20,38 @@ public class Duke {
         while (continueReading) {
             userInput = scanner.next();
             description = scanner.nextLine().trim();
-            switch (userInput) {
-                case "bye":
-                    this.printer.exit();
-                    continueReading = false;
-                    break;
-                case "list":
-                    this.listTasks();
-                    break;
-                case "done":
-                    this.completeTask(Integer.parseInt(description));
-                    break;
-                case "todo":
-                    task = new ToDo(description);
-                    this.addTask(task);
-                    break;
-                case "deadline":
-                case "event":
-                    SplitInput splitInput = new SplitInput(description);
-                    String taskName = splitInput.getTaskName();
-                    String dateTime = splitInput.getTime();
-                    if (userInput.equals("deadline")) {
-                        task = new Deadline(taskName, dateTime);
-                    } else {
-                        task = new Event(taskName, dateTime);
-                    }
-                    this.addTask(task);
+            try {
+                switch (userInput) {
+                    case "bye":
+                        this.printer.exit();
+                        continueReading = false;
+                        break;
+                    case "list":
+                        this.listTasks();
+                        break;
+                    case "done":
+                        this.completeTask(Integer.parseInt(description));
+                        break;
+                    case "todo":
+                        task = new ToDo(description);
+                        this.addTask(task);
+                        break;
+                    case "deadline":
+                    case "event":
+                        SplitInput splitInput = new SplitInput(description);
+                        String taskName = splitInput.getTaskName();
+                        String dateTime = splitInput.getTime();
+                        if (userInput.equals("deadline")) {
+                            task = new Deadline(taskName, dateTime);
+                        } else {
+                            task = new Event(taskName, dateTime);
+                        }
+                        this.addTask(task);
+                    default:
+                        throw new InvalidInputException();
+                }
+            } catch (InvalidInputException exception) {
+                this.printer.print(exception.getMessage());
             }
         }
     }
@@ -74,7 +80,7 @@ public class Duke {
             task = this.taskList.completeTask(taskNumber);
         } catch (IndexOutOfBoundsException e) {
             isCompleted = false;
-            this.printer.print("Task " + taskNumber + " does not exist");
+            this.printer.print("Task " + taskNumber + " does not exist!");
         }
         if (isCompleted) {
             this.printer.printLines("Nice! I've marked this task as done:", task.toString());
