@@ -10,21 +10,20 @@ public class Printer {
         System.out.println(indentation + message);
     }
 
+    //To change List/ArrayList to primitive array: string list.toArray(new String[0])
+    void printLines(String... lines) {
+        printBorder();
+        for (String message : lines) {
+            print(message);
+        }
+        printBorder();
+    }
+
     void greet() {
-        /*String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);*/
-        this.printBorder();
-        this.print("Hello! I'm Duke\n" + indentation + "What can I do for you?");
-        this.printBorder();
+        this.printLines("Hello I'm Duke", "What can I do for you?");
     }
 
     void exit() {
-        this.printBorder();
-        this.print("Bye. Hope to see you again soon!");
-        this.printBorder();
+        this.printLines("Bye. Hope to see you again soon!");
     }
 }

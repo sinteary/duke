@@ -1,56 +1,84 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    Printer printer = new Printer();
+    TaskList taskList = new TaskList();
 
     public static void main(String[] args) {
-        Printer printer = new Printer();
-        Tasklist tasklist = new Tasklist();
+        Duke duke = new Duke();
+        duke.run();
+    }
 
-        printer.greet();
+    private void run() {
+        this.printer.greet();
         Scanner scanner = new Scanner(System.in);
         boolean continueReading = true;
+        String userInput;
+        String description;
+        Task task = null;
         while (continueReading) {
-            String userInput = scanner.next();
+            userInput = scanner.next();
+            description = scanner.nextLine().trim();
             switch (userInput) {
                 case "bye":
+                    this.printer.exit();
                     continueReading = false;
                     break;
                 case "list":
-                    tasklist.listTasks();
+                    this.listTasks();
                     break;
                 case "done":
-                    int taskNumber = scanner.nextInt();
-                    try {
-                        tasklist.completeTask(taskNumber);
-                    } catch (IndexOutOfBoundsException e) {
-                        printer.print("Task " + taskNumber + " does not exist");
-                    }
+                    this.completeTask(Integer.parseInt(description));
                     break;
                 case "todo":
-                    String toDoName = scanner.nextLine();
-                    tasklist.addTask(toDoName);
+                    task = new ToDo(description);
+                    this.addTask(task);
                     break;
                 case "deadline":
-                    String deadlineName = scanner.nextLine();
-                    Scanner splitInput = new Scanner(deadlineName);
-                    boolean deadlineFound = false;
-                    String deadline = "";
-                    String taskName = "";
-                    while(splitInput.hasNext()) {
-                        String next = splitInput.next();
-                        if (deadlineFound) { deadline = deadline + " " + next; }
-                        else {
-                            if (next.charAt(0) == '/') {
-                                deadlineFound = true;
-                                deadline = deadline + next.substring(1);
-                            }
-                            else { taskName = taskName + " " + next; }
-                        }
+                case "event":
+                    SplitInput splitInput = new SplitInput(description);
+                    String taskName = splitInput.getTaskName();
+                    String dateTime = splitInput.getTime();
+                    if (userInput.equals("deadline")) {
+                        task = new Deadline(taskName, dateTime);
+                    } else {
+                        task = new Event(taskName, dateTime);
                     }
-                    tasklist.addDeadline(taskName,deadline);
-                    break;
+                    this.addTask(task);
             }
         }
-        printer.exit();
     }
+
+    private void listTasks() {
+        ArrayList<Task> taskList = this.taskList.getTasks();
+        ArrayList<String> tasksInString = new ArrayList<>();
+        tasksInString.add("Here are the tasks in your list:");
+        for (int index = 1; index <= taskList.size(); index++) {
+            tasksInString.add(index + "." + taskList.get(index - 1));
+        }
+        this.printer.printLines(tasksInString.toArray(new String[0]));
+    }
+
+    private void addTask(Task task){
+        this.taskList.addTask(task);
+        this.printer.printLines("Got it. I've added this task:",
+                task.toString(),
+                "Now you have " + this.taskList.getNumberOfTasks() + " tasks in the list.");
+    }
+
+    private void completeTask(int taskNumber) {
+        boolean isCompleted = true;
+        Task task = null;
+        try {
+            task = this.taskList.completeTask(taskNumber);
+        } catch (IndexOutOfBoundsException e) {
+            isCompleted = false;
+            this.printer.print("Task " + taskNumber + " does not exist");
+        }
+        if (isCompleted) {
+            this.printer.printLines("Nice! I've marked this task as done:", task.toString());
+        }
+    }
+
 }

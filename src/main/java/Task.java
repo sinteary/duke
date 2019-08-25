@@ -17,10 +17,9 @@ public class Task {
         return ("[" + (this.isDone ? "\u2713" : "\u2718") + "]");
     }
 
-    public String getTaskName() {
-        return this.taskName;
+    @Override
+    public String toString() {
+        return String.format("%s %s", this.getStatusIcon(), this.taskName);
     }
-
-    public String getTaskDescription() { return (this.getStatusIcon() + " " + this.taskName); }
 
 }

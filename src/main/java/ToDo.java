@@ -7,8 +7,8 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String getTaskDescription() {
-        return "[T]" + super.getTaskDescription();
+    public String toString() {
+        return "[T]" + super.toString();
     }
 
 }
