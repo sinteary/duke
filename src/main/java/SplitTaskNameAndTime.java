@@ -1,10 +1,10 @@
 import java.util.Scanner;
 
-public class SplitInput {
+public class SplitTaskNameAndTime {
     private String taskName;
     private String time;
 
-    public SplitInput(String line) {
+    public SplitTaskNameAndTime(String line) {
         Scanner splitInput = new Scanner(line);
         boolean timeFound = false;
         String time = "";
@@ -13,7 +13,7 @@ public class SplitInput {
             String next = splitInput.next();
             if (timeFound) { time = time + " " + next; }
             else {
-                if (next.equals("/by") || next.equals("/at") || next.equals("|")) {
+                if (next.equals("/by") || next.equals("/at")) {
                     timeFound = true;
                 }
                 else { taskName = taskName + " " + next; }

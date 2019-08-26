@@ -41,9 +41,9 @@ public class Duke {
                         break;
                     case "deadline":
                     case "event":
-                        SplitInput splitInput = new SplitInput(taskDetails);
-                        String taskName = splitInput.getTaskName();
-                        String dateTime = splitInput.getTime();
+                        SplitTaskNameAndTime splitTaskNameAndTime = new SplitTaskNameAndTime(taskDetails);
+                        String taskName = splitTaskNameAndTime.getTaskName();
+                        String dateTime = splitTaskNameAndTime.getTime();
                         if (command.equals("deadline")) {
                             task = new Deadline(taskName, dateTime);
                         } else {
