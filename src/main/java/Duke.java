@@ -14,14 +14,23 @@ public class Duke {
         this.printer.greet();
         Scanner scanner = new Scanner(System.in);
         boolean continueReading = true;
-        String userInput;
-        String description;
+        String userInput; //full line of input
+        String command; String description;
+        boolean hasDescription = false;
         Task task = null;
         while (continueReading) {
-            userInput = scanner.next();
-            description = scanner.nextLine().trim();
+            userInput = scanner.nextLine();
+            Scanner readUserInput = new Scanner(userInput);
+            command = readUserInput.next();
+            if (readUserInput.hasNext()) {
+                description = readUserInput.nextLine().trim();
+                hasDescription = true;
+            }
+            else {
+                description = "";
+            }
             try {
-                switch (userInput) {
+                switch (command) {
                     case "bye":
                         this.printer.exit();
                         continueReading = false;
@@ -30,11 +39,21 @@ public class Duke {
                         this.listTasks();
                         break;
                     case "done":
-                        this.completeTask(Integer.parseInt(description));
+                        if (!hasDescription) {
+                            throw new NoTaskNumberSpecifiedException();
+                        }
+                        else {
+                            this.completeTask(Integer.parseInt(description));
+                        }
                         break;
                     case "todo":
-                        task = new ToDo(description);
-                        this.addTask(task);
+                        if (!hasDescription) {
+                            throw new NoToDoDescriptionException();
+                        }
+                        else {
+                            task = new ToDo(description);
+                            this.addTask(task);
+                        }
                         break;
                     case "deadline":
                     case "event":
@@ -50,11 +69,19 @@ public class Duke {
                     default:
                         throw new InvalidInputException();
                 }
-            } catch (InvalidInputException exception) {
+            }
+            catch (InvalidInputException exception) {
+                this.printer.print(exception.getMessage());
+            }
+            catch (NoTaskNumberSpecifiedException exception) {
+                this.printer.print(exception.getMessage());
+            }
+            catch (NoToDoDescriptionException exception) {
                 this.printer.print(exception.getMessage());
             }
         }
     }
+
 
     private void listTasks() {
         ArrayList<Task> taskList = this.taskList.getTasks();
@@ -80,7 +107,7 @@ public class Duke {
             task = this.taskList.completeTask(taskNumber);
         } catch (IndexOutOfBoundsException e) {
             isCompleted = false;
-            this.printer.print("Task " + taskNumber + " does not exist!");
+            this.printer.print("Task number " + taskNumber + " does not exist in the list!");
         }
         if (isCompleted) {
             this.printer.printLines("Nice! I've marked this task as done:", task.toString());
