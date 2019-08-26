@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,6 +28,7 @@ public class Duke {
                 switch (command) {
                     case "bye":
                         this.printer.exit();
+                        this.taskList.saveTasksToFile();
                         continueReading = false;
                         break;
                     case "list":
@@ -54,14 +56,17 @@ public class Duke {
                         throw new InvalidInputException();*/
                 }
             }
-            catch (InvalidInputException exception) {
-                this.printer.print(exception.getMessage());
+            catch (InvalidInputException e) {
+                this.printer.print(e.getMessage());
             }
-            catch (NoTaskNumberSpecifiedException exception) {
-                this.printer.print(exception.getMessage());
+            catch (NoTaskNumberSpecifiedException e) {
+                this.printer.print(e.getMessage());
             }
-            catch (NoTaskDescriptionException exception) {
-                this.printer.print(exception.getMessage());
+            catch (NoTaskDescriptionException e) {
+                this.printer.print(e.getMessage());
+            }
+            catch (IOException e) {
+                this.printer.print(e.getMessage());
             }
         }
     }

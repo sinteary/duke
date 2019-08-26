@@ -1,4 +1,7 @@
-T | 1 | read book
-D | 0 | return book | June 6th
+T | 1 | read book | 
+D | 1 | return book | June 6th
 E | 0 | project meeting | Aug 6th 2-4pm
-T | 1 | join sports club
+T | 1 | join sports club | 
+T | 1 | movies | 
+D | 1 | bio exam | fri 5pm
+E | 0 | bake sale | monday 5pm

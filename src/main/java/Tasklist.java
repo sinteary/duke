@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -28,6 +29,17 @@ public class TaskList {
         }
     }
 
+    void saveTasksToFile() throws IOException {
+        File dataFile = new File(filePath);
+        FileWriter fileWriter = new FileWriter(dataFile);
+        String fileLine = null;
+        for (Task task: this.taskList) {
+            fileLine = taskToFile(task);
+            fileWriter.write(fileLine);
+        }
+        fileWriter.close();
+    }
+
     public Task fileToTask(String fileLine) {
         String[] taskInputs = fileLine.split(" \\| ");
         //System.out.println(taskInputs[0] + " " + taskInputs[1] + " " + taskInputs[2]);
@@ -49,6 +61,29 @@ public class TaskList {
         }
         return task;
     }
+
+    public String taskToFile (Task task) {
+        String separator = " | ";
+        String taskInitial = "";
+        String taskDone = (task.isDone? "1" : "0");
+        String taskName = (task.taskName);
+        String taskTime = "";
+        switch (task.tasktype) {
+            case TODO:
+                taskInitial = "T";
+                break;
+            case EVENT:
+                taskInitial = "E";
+                taskTime = task.getTaskTime();
+                break;
+            case DEADLINE:
+                taskInitial = "D";
+                taskTime = task.getTaskTime();
+                break;
+        }
+        return taskInitial + separator + taskDone + separator + taskName + separator + taskTime + "\n";
+    }
+
 
     void addTask(Task task) {
         this.taskList.add(task);
