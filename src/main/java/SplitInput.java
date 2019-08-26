@@ -13,7 +13,7 @@ public class SplitInput {
             String next = splitInput.next();
             if (timeFound) { time = time + " " + next; }
             else {
-                if (next.equals("/by") || next.equals("/at")) {
+                if (next.equals("/by") || next.equals("/at") || next.equals("|")) {
                     timeFound = true;
                 }
                 else { taskName = taskName + " " + next; }

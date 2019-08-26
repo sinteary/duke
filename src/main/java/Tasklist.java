@@ -4,7 +4,7 @@ public class TaskList {
     private ArrayList <Task> taskList;
     private Printer printer;
 
-    TaskList() {
+    public TaskList() {
         this.taskList = new ArrayList<Task>();
         this.printer = new Printer();
     }
