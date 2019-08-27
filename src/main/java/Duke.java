@@ -1,5 +1,9 @@
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Duke {
@@ -28,7 +32,7 @@ public class Duke {
                 switch (command) {
                     case "bye":
                         this.printer.exit();
-                        this.taskList.saveTasksToFile();
+                        taskList.saveTasksToFile();
                         continueReading = false;
                         break;
                     case "list":
@@ -46,15 +50,28 @@ public class Duke {
                         SplitTaskNameAndTime splitTaskNameAndTime = new SplitTaskNameAndTime(taskDetails);
                         String taskName = splitTaskNameAndTime.getTaskName();
                         String dateTime = splitTaskNameAndTime.getTime();
+                        try {
+                            DateFormat inputFormat = new SimpleDateFormat("dd/mm/yyyy HHmm");
+                            Date parsed = inputFormat.parse(dateTime);
+                            DateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy, hh a");
+                            dateTime = outputFormat.format(parsed);
+                        }
+                        catch (ParseException e) {
+                            dateTime = splitTaskNameAndTime.getTime();
+                        }
+
                         if (command.equals("deadline")) {
                             task = new Deadline(taskName, dateTime);
                         } else {
                             task = new Event(taskName, dateTime);
                         }
                         this.addTask(task);
+
+                        //this.taskList.saveTasksToFile();
                     /*default:
                         throw new InvalidInputException();*/
                 }
+                this.taskList.saveTasksToFile();
             }
             catch (InvalidInputException e) {
                 this.printer.print(e.getMessage());

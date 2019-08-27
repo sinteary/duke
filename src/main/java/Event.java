@@ -4,7 +4,7 @@ public class Event extends Task {
     public Event(String taskName, String at) {
         super(taskName);
         this.at = at;
-        super.tasktype = TaskType.EVENT;
+        super.setTaskType(TaskType.EVENT);
     }
 
     @Override

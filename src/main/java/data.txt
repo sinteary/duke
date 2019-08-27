@@ -5,3 +5,5 @@ T | 1 | join sports club |
 T | 1 | movies | 
 D | 1 | bio exam | fri 5pm
 E | 0 | bake sale | monday 5pm
+D | 0 | java homework | 28 January 2019, 11 PM
+T | 0 | eat | 

@@ -65,10 +65,10 @@ public class TaskList {
     public String taskToFile (Task task) {
         String separator = " | ";
         String taskInitial = "";
-        String taskDone = (task.isDone? "1" : "0");
-        String taskName = (task.taskName);
+        String taskDone = (task.isTaskDone() ? "1" : "0");
+        String taskName = (task.getTaskName());
         String taskTime = "";
-        switch (task.tasktype) {
+        switch (task.getTasktype()) {
             case TODO:
                 taskInitial = "T";
                 break;

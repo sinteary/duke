@@ -3,7 +3,7 @@ public class ToDo extends Task {
 
     public ToDo(String toDoName) {
         super(toDoName);
-        super.tasktype = TaskType.TODO;
+        super.setTaskType(TaskType.TODO);
     }
 
     @Override

@@ -1,12 +1,12 @@
-public class Task {
-    protected String taskName;
-    protected boolean isDone;
-    protected TaskType tasktype;
+public abstract class Task {
+    private String taskName;
+    private boolean isDone;
+    private TaskType tasktype;
 
     public Task(String taskName) {
         this.taskName = taskName;
         this.isDone = false;
-        this.tasktype = TaskType.TODO;
+        this.tasktype = null;
     }
 
     public void markAsDone() {
@@ -17,8 +17,24 @@ public class Task {
         return ("[" + (this.isDone ? "\u2713" : "\u2718") + "]");
     }
 
+    public String getTaskName() {
+        return this.taskName;
+    }
+
+    public TaskType getTasktype() {
+        return this.tasktype;
+    }
+
+    public void setTaskType(TaskType type) {
+        this.tasktype = type;
+    }
+
     public String getTaskTime() {
         return "";
+    }
+
+    public boolean isTaskDone() {
+        return this.isDone;
     }
 
     @Override
