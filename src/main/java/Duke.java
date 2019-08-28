@@ -66,10 +66,6 @@ public class Duke {
                             task = new Event(taskName, dateTime);
                         }
                         this.addTask(task);
-
-                        //this.taskList.saveTasksToFile();
-                    /*default:
-                        throw new InvalidInputException();*/
                 }
                 this.taskList.saveTasksToFile();
             }
