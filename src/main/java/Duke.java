@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Duke {
@@ -51,21 +52,23 @@ public class Duke {
                         String taskName = splitTaskNameAndTime.getTaskName();
                         String dateTime = splitTaskNameAndTime.getTime();
                         try {
-                            DateFormat inputFormat = new SimpleDateFormat("dd/mm/yyyy HHmm");
+                            DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
                             Date parsed = inputFormat.parse(dateTime);
-                            DateFormat outputFormat = new SimpleDateFormat("dd MMMM yyyy, hh a");
+                            DateFormat outputFormat = new SimpleDateFormat("dd MMMMM yyyy, h.mm a");
                             dateTime = outputFormat.format(parsed);
+                            if (command.equals("deadline")) {
+                                task = new Deadline(taskName, dateTime);
+                            } else {
+                                task = new Event(taskName, dateTime);
+                            }
+                            this.addTask(task);
                         }
                         catch (ParseException e) {
-                            dateTime = splitTaskNameAndTime.getTime();
+                            this.printer.printLines("☹ OOPS!!! I don't recognize the date and time you entered.",
+                                    "Please enter your date and time in this format: dd/MM/yyyy HHmm", "Example: 2/12/2019 1830 means 2 December 2019, 6.30pm");
                         }
 
-                        if (command.equals("deadline")) {
-                            task = new Deadline(taskName, dateTime);
-                        } else {
-                            task = new Event(taskName, dateTime);
-                        }
-                        this.addTask(task);
+
                 }
                 this.taskList.saveTasksToFile();
             }
@@ -80,6 +83,9 @@ public class Duke {
             }
             catch (IOException e) {
                 this.printer.print(e.getMessage());
+            }
+            catch (NoSuchElementException e) {
+                this.printer.printLines("Please give me an instruction :)");
             }
         }
     }
