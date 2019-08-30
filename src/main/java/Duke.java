@@ -7,6 +7,11 @@ import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import Task.Deadline;
+import Task.Event;
+import Task.Task;
+import Task.ToDo;
+
 public class Duke {
     Printer printer = new Printer();
     TaskList taskList = new TaskList();
@@ -81,11 +86,11 @@ public class Duke {
             catch (NoTaskDescriptionException e) {
                 this.printer.print(e.getMessage());
             }
-            catch (IOException e) {
-                this.printer.print(e.getMessage());
-            }
             catch (NoSuchElementException e) {
                 this.printer.printLines("Please give me an instruction :)");
+            }
+            catch (IOException e) {
+                this.printer.printLines(e.getMessage());
             }
         }
     }

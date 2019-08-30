@@ -5,6 +5,10 @@ T | 1 | join sports club |
 T | 1 | movies | 
 D | 1 | bio exam | fri 5pm
 E | 1 | bake sale | monday 5pm
-D | 0 | java homework | 28 January 2019, 11 PM
 E | 1 | morning exercise | 21 September 2019, 7.45 AM
 T | 1 | visit jerry | 
+D | 0 | make cookies | 09 October 2019, 1.40 PM
+T | 0 | uwu | 
+T | 0 | uwuwuw | 
+T | 0 | uwu | 
+T | 0 | uwu | 

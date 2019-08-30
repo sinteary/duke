@@ -1,9 +1,14 @@
+package Task;
+
 public class ToDo extends Task {
-    protected TaskType tasktype;
+    private TaskType taskType = TaskType.TODO;
 
     public ToDo(String toDoName) {
         super(toDoName);
-        super.setTaskType(TaskType.TODO);
+    }
+
+    public TaskType getTasktype() {
+        return this.taskType;
     }
 
     @Override

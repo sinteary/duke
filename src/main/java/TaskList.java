@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Task.*;
+
 public class TaskList {
     private ArrayList <Task> taskList = new ArrayList<>();
     private Printer printer;

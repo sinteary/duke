@@ -1,10 +1,16 @@
+package Task;
+
 public class Event extends Task {
+    private TaskType taskType = TaskType.EVENT;
     private String at;
 
     public Event(String taskName, String at) {
         super(taskName);
         this.at = at;
-        super.setTaskType(TaskType.EVENT);
+    }
+
+    public TaskType getTasktype() {
+        return this.taskType;
     }
 
     @Override

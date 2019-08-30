@@ -1,10 +1,16 @@
+package Task;
+
 public class Deadline extends Task {
-    protected String by;
+    private TaskType taskType = TaskType.DEADLINE;
+    private String by;
 
     public Deadline(String taskName, String by) {
         super(taskName);
         this.by = by;
-        super.setTaskType(TaskType.DEADLINE);
+    }
+
+    public TaskType getTasktype() {
+        return this.taskType;
     }
 
     @Override

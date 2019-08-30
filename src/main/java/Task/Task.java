@@ -1,3 +1,5 @@
+package Task;
+
 public abstract class Task {
     private String taskName;
     private boolean isDone;
@@ -6,7 +8,6 @@ public abstract class Task {
     public Task(String taskName) {
         this.taskName = taskName;
         this.isDone = false;
-        this.tasktype = null;
     }
 
     public void markAsDone() {
@@ -21,13 +22,7 @@ public abstract class Task {
         return this.taskName;
     }
 
-    public TaskType getTasktype() {
-        return this.tasktype;
-    }
-
-    public void setTaskType(TaskType type) {
-        this.tasktype = type;
-    }
+    public abstract TaskType getTasktype();
 
     public String getTaskTime() {
         return "";
