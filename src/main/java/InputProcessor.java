@@ -14,11 +14,13 @@ public class InputProcessor {
             case "event":
             case "deadline":
             case "done":
+            case "delete":
                 if (readUserInput.hasNext()) {
                     this.details = readUserInput.nextLine().trim();
                 }
                 else {
                     switch (this.command) {
+                        case "delete":
                         case "done":
                             throw new NoTaskNumberSpecifiedException();
                         default:

@@ -47,6 +47,9 @@ public class Duke {
                     case "done":
                         this.completeTask(Integer.parseInt(taskDetails));
                         break;
+                    case "delete":
+                        this.removeTask(Integer.parseInt(taskDetails));
+                        break;
                     case "todo":
                         task = new ToDo(taskDetails);
                         this.addTask(task);
@@ -72,22 +75,25 @@ public class Duke {
                             this.printer.printLines("☹ OOPS!!! I don't recognize the date and time you entered.",
                                     "Please enter your date and time in this format: dd/MM/yyyy HHmm", "Example: 2/12/2019 1830 means 2 December 2019, 6.30pm");
                         }
-
-
-                }
+                        break;
+                 }
                 this.taskList.saveTasksToFile();
             }
-            catch (InvalidInputException e) {
-                this.printer.print(e.getMessage());
-            }
+
             catch (NoTaskNumberSpecifiedException e) {
-                this.printer.print(e.getMessage());
+                this.printer.printLines(e.getMessage());
             }
             catch (NoTaskDescriptionException e) {
-                this.printer.print(e.getMessage());
+                this.printer.printLines(e.getMessage());
+            }
+            catch (IndexOutOfBoundsException e) {
+                this.printer.printLines("Oops! This task does not exist and cannot be removed!");
             }
             catch (NoSuchElementException e) {
                 this.printer.printLines("Please give me an instruction :)");
+            }
+            catch (InvalidInputException e) {
+                this.printer.printLines(e.getMessage());
             }
             catch (IOException e) {
                 this.printer.printLines(e.getMessage());
@@ -108,9 +114,17 @@ public class Duke {
     private void addTask(Task task){
         this.taskList.addTask(task);
         this.printer.printLines("Got it. I've added this task:",
-                task.toString(),
-                "Now you have " + this.taskList.getNumberOfTasks() + " tasks in the list.");
+        task.toString(),
+        "Now you have " + this.taskList.getNumberOfTasks() + " tasks in the list.");
     }
+
+    private void removeTask(int taskNumber) {
+        this.printer.printLines("Got it. I've removed this task:",
+        this.taskList.getTask(taskNumber).toString(),
+        "Now you have " + this.taskList.getNumberOfTasks() + " tasks in the list.");
+        this.taskList.removeTask(taskNumber);
+    }
+
 
     private void completeTask(int taskNumber) {
         boolean isCompleted = true;
