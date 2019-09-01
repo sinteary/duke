@@ -47,6 +47,9 @@ public class Duke {
                     case "done":
                         this.completeTask(Integer.parseInt(taskDetails));
                         break;
+                    case "find":
+                        this.findTasksByKeyword(taskDetails);
+                        break;
                     case "todo":
                         task = new ToDo(taskDetails);
                         this.addTask(task);
@@ -72,8 +75,7 @@ public class Duke {
                             this.printer.printLines("☹ OOPS!!! I don't recognize the date and time you entered.",
                                     "Please enter your date and time in this format: dd/MM/yyyy HHmm", "Example: 2/12/2019 1830 means 2 December 2019, 6.30pm");
                         }
-
-
+                        break;
                 }
                 this.taskList.saveTasksToFile();
             }
@@ -125,5 +127,16 @@ public class Duke {
             this.printer.printLines("Nice! I've marked this task as done:", task.toString());
         }
     }
+
+    private void findTasksByKeyword(String keyword) {
+        ArrayList<String> matchingTasksInString = new ArrayList<>();
+        matchingTasksInString.add("Here are the matching tasks in your list:");
+        ArrayList<Task> matchingTasks = this.taskList.getMatchingTasks(keyword);
+        for (int i = 1; i <= matchingTasks.size(); i ++) {
+            matchingTasksInString.add("" + (i) + "." + matchingTasks.get(i-1).toString());
+        }
+        this.printer.printLines(matchingTasksInString.toArray(new String[0]));
+    }
+
 
 }

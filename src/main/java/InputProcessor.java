@@ -14,6 +14,7 @@ public class InputProcessor {
             case "event":
             case "deadline":
             case "done":
+            case "find":
                 if (readUserInput.hasNext()) {
                     this.details = readUserInput.nextLine().trim();
                 }
@@ -21,10 +22,13 @@ public class InputProcessor {
                     switch (this.command) {
                         case "done":
                             throw new NoTaskNumberSpecifiedException();
+                        case "finish":
+                            //throw new NoKeywordSpecifiedException();
                         default:
                             throw new NoTaskDescriptionException(command);
                     }
                 }
+                break;
             case "list":
             case "bye":
                 break;
