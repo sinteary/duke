@@ -86,9 +86,16 @@ public class TaskList {
         return taskInitial + separator + taskDone + separator + taskName + separator + taskTime + "\n";
     }
 
+    public Task getTask(int taskNumber) {
+        return this.taskList.get(taskNumber - 1);
+    }
 
-    void addTask(Task task) {
+    public void addTask(Task task) {
         this.taskList.add(task);
+    }
+
+    public void removeTask(int taskNumber) throws IndexOutOfBoundsException{
+        this.taskList.remove(taskNumber - 1);
     }
 
     int getNumberOfTasks() {
@@ -103,4 +110,6 @@ public class TaskList {
         this.taskList.get(taskNumber - 1).markAsDone();
         return this.taskList.get(taskNumber - 1);
     }
+
+
 }

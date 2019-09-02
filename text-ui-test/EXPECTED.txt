@@ -1,0 +1,9 @@
+     ____________________________________________________________
+      Here are the tasks in your list:
+      1.[T][?] read book
+      2.[D][?] return book (by: June 6th)
+      3.[E][?] project meeting (at: Aug 6th 2-4pm)
+      4.[T][?] join sports club
+      5.[E][?] bake sale (at: monday 5pm)
+      6.[E][?] morning exercise (at: 21 September 2019, 7.45 AM)
+     ____________________________________________________________
