@@ -15,6 +15,7 @@ public class InputProcessor {
             case "deadline":
             case "done":
             case "delete":
+            case "find":
                 if (readUserInput.hasNext()) {
                     this.details = readUserInput.nextLine().trim();
                 }
@@ -23,10 +24,13 @@ public class InputProcessor {
                         case "delete":
                         case "done":
                             throw new NoTaskNumberSpecifiedException();
+                        case "finish":
+                            //throw new NoKeywordSpecifiedException();
                         default:
                             throw new NoTaskDescriptionException(command);
                     }
                 }
+                break;
             case "list":
             case "bye":
                 break;

@@ -50,6 +50,9 @@ public class Duke {
                     case "delete":
                         this.removeTask(Integer.parseInt(taskDetails));
                         break;
+                    case "find":
+                        this.findTasksByKeyword(taskDetails);
+                        break;
                     case "todo":
                         task = new ToDo(taskDetails);
                         this.addTask(task);
@@ -139,5 +142,16 @@ public class Duke {
             this.printer.printLines("Nice! I've marked this task as done:", task.toString());
         }
     }
+
+    private void findTasksByKeyword(String keyword) {
+        ArrayList<String> matchingTasksInString = new ArrayList<>();
+        matchingTasksInString.add("Here are the matching tasks in your list:");
+        ArrayList<Task> matchingTasks = this.taskList.getMatchingTasks(keyword);
+        for (int i = 1; i <= matchingTasks.size(); i ++) {
+            matchingTasksInString.add("" + (i) + "." + matchingTasks.get(i-1).toString());
+        }
+        this.printer.printLines(matchingTasksInString.toArray(new String[0]));
+    }
+
 
 }

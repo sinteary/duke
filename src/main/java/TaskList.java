@@ -111,5 +111,20 @@ public class TaskList {
         return this.taskList.get(taskNumber - 1);
     }
 
+    ArrayList<Task> getMatchingTasks(String keyword) {
+        ArrayList<Task> matchingTasks = new ArrayList();
+        for(int i = 0; i < this.taskList.size(); i ++) {
+            String taskName = this.taskList.get(i).getTaskName();
+            Scanner parseTaskName = new Scanner(taskName);
+            while (parseTaskName.hasNext()) {
+                String word = parseTaskName.next();
+                if (word.equals(keyword)) {
+                    matchingTasks.add(this.taskList.get(i));
+                    break;
+                }
+            }
+        }
+        return matchingTasks;
+    }
 
 }
