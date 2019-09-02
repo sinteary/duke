@@ -13,11 +13,21 @@ import Task.Task;
 import Task.ToDo;
 
 public class Duke {
+    private UI ui;
+    private TaskList taskList;
+    private Storage storage;
+    static String filePath = ".\\src\\main\\java\\data.txt";
+
     Printer printer = new Printer();
-    TaskList taskList = new TaskList();
+    public Duke(String filePath) {
+
+        this.storage = new Storage(filePath);
+        this.taskList = new TaskList(storage.loadTasksFromFile());
+    }
+
 
     public static void main(String[] args) {
-        Duke duke = new Duke();
+        Duke duke = new Duke(filePath);
         duke.run();
     }
 
@@ -38,7 +48,6 @@ public class Duke {
                 switch (command) {
                     case "bye":
                         this.printer.exit();
-                        taskList.saveTasksToFile();
                         continueReading = false;
                         break;
                     case "list":
@@ -80,7 +89,7 @@ public class Duke {
                         }
                         break;
                  }
-                this.taskList.saveTasksToFile();
+                this.storage.saveTasksToFile(this.taskList.getAllTasks());
             }
 
             catch (NoTaskNumberSpecifiedException e) {
@@ -105,7 +114,7 @@ public class Duke {
     }
 
     private void listTasks() {
-        ArrayList<Task> taskList = this.taskList.getTasks();
+        ArrayList<Task> taskList = this.taskList.getAllTasks();
         ArrayList<String> tasksInString = new ArrayList<>();
         tasksInString.add("Here are the tasks in your list:");
         for (int index = 1; index <= taskList.size(); index++) {
