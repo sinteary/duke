@@ -1,4 +1,4 @@
-import DukeExceptions.*;
+import dukeExceptions.*;
 import java.util.Scanner;
 
 public class InputProcessor {

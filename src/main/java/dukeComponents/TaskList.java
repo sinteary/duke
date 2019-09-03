@@ -1,3 +1,5 @@
+package dukeComponents;
+
 import Task.Task;
 
 import java.util.ArrayList;
@@ -39,7 +41,7 @@ public class TaskList {
         return this.taskList.get(taskNumber - 1);
     }
 
-    ArrayList<Task> getMatchingTasks(String keyword) {
+    public ArrayList<Task> getMatchingTasks(String keyword) {
         ArrayList<Task> matchingTasks = new ArrayList();
         for(int i = 0; i < this.taskList.size(); i ++) {
             String taskName = this.taskList.get(i).getTaskName();

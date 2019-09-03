@@ -1,6 +1,10 @@
-import DukeExceptions.InvalidInputException;
-import DukeExceptions.NoTaskDescriptionException;
-import DukeExceptions.NoTaskNumberSpecifiedException;
+import dukeComponents.SplitTaskNameAndTime;
+import dukeComponents.Storage;
+import dukeComponents.TaskList;
+import dukeComponents.UI;
+import dukeExceptions.InvalidInputException;
+import dukeExceptions.NoTaskDescriptionException;
+import dukeExceptions.NoTaskNumberSpecifiedException;
 import Task.Deadline;
 import Task.Event;
 import Task.Task;
@@ -148,7 +152,7 @@ public class Duke {
             task = this.taskList.completeTask(taskNumber);
         } catch (IndexOutOfBoundsException e) {
             isCompleted = false;
-            this.ui.print("Task number " + taskNumber + " does not exist in the list!");
+            this.ui.printLines("Task number " + taskNumber + " does not exist in the list!");
         }
         if (isCompleted) {
             this.ui.printLines("Nice! I've marked this task as done:", task.toString());

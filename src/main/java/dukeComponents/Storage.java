@@ -1,3 +1,5 @@
+package dukeComponents;
+
 import Task.*;
 
 import java.io.File;
@@ -30,7 +32,7 @@ public class Storage {
         return taskList;
     }
 
-    void saveTasksToFile(ArrayList<Task> taskList) throws IOException {
+    public void saveTasksToFile(ArrayList<Task> taskList) throws IOException {
         File dataFile = new File(filePath);
         FileWriter fileWriter = new FileWriter(dataFile);
         String fileLine = null;

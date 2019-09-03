@@ -1,3 +1,5 @@
+package dukeComponents;
+
 import java.util.Scanner;
 
 public class UI {
@@ -19,7 +21,7 @@ public class UI {
     }
 
     //To change List/ArrayList to primitive array: string list.toArray(new String[0])
-    void printLines(String... lines) {
+    public void printLines(String... lines) {
         printBorder();
         for (String message : lines) {
             print(message);

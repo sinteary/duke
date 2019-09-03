@@ -1,3 +1,5 @@
+package dukeComponents;
+
 import java.util.Scanner;
 
 public class SplitTaskNameAndTime {
@@ -23,11 +25,11 @@ public class SplitTaskNameAndTime {
         this.time = time.trim();
     }
 
-    String getTaskName() {
+    public String getTaskName() {
         return this.taskName;
     }
 
-    String getTime() {
+    public String getTime() {
         return this.time;
     }
 

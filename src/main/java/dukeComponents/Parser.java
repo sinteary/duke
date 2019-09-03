@@ -1,6 +1,9 @@
-import DukeExceptions.InvalidInputException;
-import DukeExceptions.NoTaskDescriptionException;
-import DukeExceptions.NoTaskNumberSpecifiedException;
+package dukeComponents;
+
+import Commands.*;
+import dukeExceptions.InvalidInputException;
+import dukeExceptions.NoTaskDescriptionException;
+import dukeExceptions.NoTaskNumberSpecifiedException;
 
 import java.util.Scanner;
 
@@ -8,11 +11,10 @@ public class Parser {
     private Command command;
 
     public Command parse(String fullCommand) throws NoTaskDescriptionException, NoTaskNumberSpecifiedException, InvalidInputException {
-        String userCommand, commandDetails;
         Scanner scanner = new Scanner(fullCommand);
+        String userCommand = scanner.next();
+        String commandDetails = "";
 
-        userCommand = scanner.next();
-        commandDetails = "";
         switch (userCommand) {
             case "todo":
             case "event":

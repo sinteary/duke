@@ -1,5 +1,7 @@
-import Task.Task;
+package Commands;
+import dukeComponents.*;
 
+import Task.Task;
 import java.io.IOException;
 
 public class DoneCommand extends Command{
