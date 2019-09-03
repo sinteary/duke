@@ -22,7 +22,7 @@ public abstract class Task {
         return this.taskName;
     }
 
-    public abstract TaskType getTasktype();
+    public abstract TaskType getTaskType();
 
     public String getTaskTime() {
         return "";

@@ -9,7 +9,7 @@ public class Event extends Task {
         this.at = at;
     }
 
-    public TaskType getTasktype() {
+    public TaskType getTaskType() {
         return this.taskType;
     }
 

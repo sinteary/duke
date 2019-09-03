@@ -7,7 +7,7 @@ public class ToDo extends Task {
         super(toDoName);
     }
 
-    public TaskType getTasktype() {
+    public TaskType getTaskType() {
         return this.taskType;
     }
 

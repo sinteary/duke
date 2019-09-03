@@ -1,17 +1,17 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import Task.Task;
+
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import Task.*;
 
 public class TaskList {
     private ArrayList <Task> taskList = new ArrayList<>();
 
     public TaskList(ArrayList<Task> loadedTasks) {
         this.taskList = loadedTasks;
+    }
+
+    public void clear() {
+        this.taskList = new ArrayList<>();
     }
 
     public Task getTask(int taskNumber) {

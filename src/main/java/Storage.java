@@ -25,7 +25,7 @@ public class Storage {
                 taskList.add(fileToTask(fileLine));
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("File not found :(");
         }
         return taskList;
     }
@@ -70,7 +70,7 @@ public class Storage {
         String taskDone = (task.isTaskDone() ? "1" : "0");
         String taskName = (task.getTaskName());
         String taskTime = "";
-        switch (task.getTasktype()) {
+        switch (task.getTaskType()) {
             case TODO:
                 taskInitial = "T";
                 break;

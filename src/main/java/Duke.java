@@ -1,3 +1,11 @@
+import DukeExceptions.InvalidInputException;
+import DukeExceptions.NoTaskDescriptionException;
+import DukeExceptions.NoTaskNumberSpecifiedException;
+import Task.Deadline;
+import Task.Event;
+import Task.Task;
+import Task.ToDo;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -5,22 +13,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
-
-import Task.Deadline;
-import Task.Event;
-import Task.Task;
-import Task.ToDo;
 
 public class Duke {
     private UI ui;
     private TaskList taskList;
     private Storage storage;
-    static String filePath = ".\\src\\main\\java\\data.txt";
+    static String filePath = "data.txt";
 
     Printer printer = new Printer();
     public Duke(String filePath) {
-
+        this.ui = new UI();
         this.storage = new Storage(filePath);
         this.taskList = new TaskList(storage.loadTasksFromFile());
     }
@@ -32,15 +34,14 @@ public class Duke {
     }
 
     private void run() {
-        this.printer.greet();
-        Scanner scanner = new Scanner(System.in);
+        this.ui.showWelcome();
         boolean continueReading = true;
         String userInput;
         String command; String taskDetails;
         Task task = null;
 
         while (continueReading) {
-            userInput = scanner.nextLine();
+            userInput = this.ui.readCommand();
             try {
                 InputProcessor inputProcessor = new InputProcessor(userInput);
                 command = inputProcessor.getCommand();
@@ -65,6 +66,9 @@ public class Duke {
                     case "todo":
                         task = new ToDo(taskDetails);
                         this.addTask(task);
+                        break;
+                    case "clear":
+                        this.taskList.clear();
                         break;
                     case "deadline":
                     case "event":

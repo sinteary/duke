@@ -9,7 +9,7 @@ public class Deadline extends Task {
         this.by = by;
     }
 
-    public TaskType getTasktype() {
+    public TaskType getTaskType() {
         return this.taskType;
     }
 

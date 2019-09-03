@@ -1,9 +1,0 @@
-T | 1 | read book | 
-D | 1 | return book | June 6th
-E | 0 | project meeting | Aug 6th 2-4pm
-T | 1 | join sports club | 
-E | 1 | bake sale | monday 5pm
-E | 1 | morning exercise | 21 September 2019, 7.45 AM
-T | 1 | join marathon | 
-T | 0 | bake cake | 
-E | 0 | student life fair | 08 August 2019, 2.00 PM
