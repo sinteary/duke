@@ -20,7 +20,6 @@ public class Duke {
     private Storage storage;
     static String filePath = "data.txt";
 
-    Printer printer = new Printer();
     public Duke(String filePath) {
         this.ui = new UI();
         this.storage = new Storage(filePath);
@@ -34,7 +33,7 @@ public class Duke {
     }
 
     private void run() {
-        this.ui.showWelcome();
+        this.ui.greet();
         boolean continueReading = true;
         String userInput;
         String command; String taskDetails;
@@ -48,7 +47,7 @@ public class Duke {
                 taskDetails = inputProcessor.getDetails();
                 switch (command) {
                     case "bye":
-                        this.printer.exit();
+                        this.ui.exit();
                         continueReading = false;
                         break;
                     case "list":
@@ -88,7 +87,7 @@ public class Duke {
                             this.addTask(task);
                         }
                         catch (ParseException e) {
-                            this.printer.printLines("☹ OOPS!!! I don't recognize the date and time you entered.",
+                            this.ui.printLines("☹ OOPS!!! I don't recognize the date and time you entered.",
                                     "Please enter your date and time in this format: dd/MM/yyyy HHmm", "Example: 2/12/2019 1830 means 2 December 2019, 6.30pm");
                         }
                         break;
@@ -97,22 +96,22 @@ public class Duke {
             }
 
             catch (NoTaskNumberSpecifiedException e) {
-                this.printer.printLines(e.getMessage());
+                this.ui.printLines(e.getMessage());
             }
             catch (NoTaskDescriptionException e) {
-                this.printer.printLines(e.getMessage());
+                this.ui.printLines(e.getMessage());
             }
             catch (IndexOutOfBoundsException e) {
-                this.printer.printLines("Oops! This task does not exist and cannot be removed!");
+                this.ui.printLines("Oops! This task does not exist and cannot be removed!");
             }
             catch (NoSuchElementException e) {
-                this.printer.printLines("Please give me an instruction :)");
+                this.ui.printLines("Please give me an instruction :)");
             }
             catch (InvalidInputException e) {
-                this.printer.printLines(e.getMessage());
+                this.ui.printLines(e.getMessage());
             }
             catch (IOException e) {
-                this.printer.printLines(e.getMessage());
+                this.ui.printLines(e.getMessage());
             }
         }
     }
@@ -124,18 +123,18 @@ public class Duke {
         for (int index = 1; index <= taskList.size(); index++) {
             tasksInString.add(index + "." + taskList.get(index - 1));
         }
-        this.printer.printLines(tasksInString.toArray(new String[0]));
+        this.ui.printLines(tasksInString.toArray(new String[0]));
     }
 
     private void addTask(Task task){
         this.taskList.addTask(task);
-        this.printer.printLines("Got it. I've added this task:",
+        this.ui.printLines("Got it. I've added this task:",
         task.toString(),
         "Now you have " + this.taskList.getNumberOfTasks() + " tasks in the list.");
     }
 
     private void removeTask(int taskNumber) {
-        this.printer.printLines("Got it. I've removed this task:",
+        this.ui.printLines("Got it. I've removed this task:",
         this.taskList.getTask(taskNumber).toString(),
         "Now you have " + this.taskList.getNumberOfTasks() + " tasks in the list.");
         this.taskList.removeTask(taskNumber);
@@ -149,10 +148,10 @@ public class Duke {
             task = this.taskList.completeTask(taskNumber);
         } catch (IndexOutOfBoundsException e) {
             isCompleted = false;
-            this.printer.print("Task number " + taskNumber + " does not exist in the list!");
+            this.ui.print("Task number " + taskNumber + " does not exist in the list!");
         }
         if (isCompleted) {
-            this.printer.printLines("Nice! I've marked this task as done:", task.toString());
+            this.ui.printLines("Nice! I've marked this task as done:", task.toString());
         }
     }
 
@@ -163,7 +162,7 @@ public class Duke {
         for (int i = 1; i <= matchingTasks.size(); i ++) {
             matchingTasksInString.add("" + (i) + "." + matchingTasks.get(i-1).toString());
         }
-        this.printer.printLines(matchingTasksInString.toArray(new String[0]));
+        this.ui.printLines(matchingTasksInString.toArray(new String[0]));
     }
 
 
