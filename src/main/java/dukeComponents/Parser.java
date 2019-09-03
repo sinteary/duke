@@ -45,12 +45,16 @@ public class Parser {
                     case "done":
                         this.command = new DoneCommand(commandDetails);
                         break;
+                    case "delete":
+                        this.command = new DeleteCommand(commandDetails);
+                        break;
                     case "find":
                         this.command = new FindCommand(commandDetails);
                         break;
                 }
                 break;
             case "list":
+                this.command = new ListCommand();
                 break;
             case "bye":
                 this.command = new ExitCommand();

@@ -4,7 +4,7 @@ import dukeComponents.Storage;
 import dukeComponents.TaskList;
 import dukeComponents.UI;
 
-public class DeleteCommand {
+public class DeleteCommand extends Command{
     private int taskNumber;
 
     public DeleteCommand (String taskNumber) {
