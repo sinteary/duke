@@ -1,4 +1,3 @@
-blah
 todo bake cake
 event bake sale /at 20/09/2019 1400
 deadline finish cake recipe /by 10/09/2019 1700
@@ -6,3 +5,13 @@ list
 done 2
 find cake
 find bake
+delete 1
+list
+done 5
+todo
+deadline
+event
+blah
+deadline upload file /by 2pm
+event contest /at 5pm
+bye

@@ -5,12 +5,13 @@ import dukeExceptions.InvalidInputException;
 import dukeExceptions.NoTaskDescriptionException;
 import dukeExceptions.NoTaskNumberSpecifiedException;
 
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Parser {
-    private Command command;
+    private static Command command;
 
-    public Command parse(String fullCommand) throws NoTaskDescriptionException, NoTaskNumberSpecifiedException, InvalidInputException {
+    public static Command parse(String fullCommand) throws NoTaskDescriptionException, NoTaskNumberSpecifiedException, InvalidInputException, ParseException {
         Scanner scanner = new Scanner(fullCommand);
         String userCommand = scanner.next();
         String commandDetails = "";
@@ -40,29 +41,29 @@ public class Parser {
                     case "todo":
                     case "event":
                     case "deadline":
-                        this.command = new AddCommand(userCommand, commandDetails);
+                        command = new AddCommand(userCommand, commandDetails);
                         break;
                     case "done":
-                        this.command = new DoneCommand(commandDetails);
+                        command = new DoneCommand(commandDetails);
                         break;
                     case "delete":
-                        this.command = new DeleteCommand(commandDetails);
+                        command = new DeleteCommand(commandDetails);
                         break;
                     case "find":
-                        this.command = new FindCommand(commandDetails);
+                        command = new FindCommand(commandDetails);
                         break;
                 }
                 break;
             case "list":
-                this.command = new ListCommand();
+                command = new ListCommand();
                 break;
             case "bye":
-                this.command = new ExitCommand();
+                command = new ExitCommand();
                 break;
             default:
                 throw new InvalidInputException();
         }
-        return this.command;
+        return command;
     }
 
 }

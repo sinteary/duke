@@ -7,11 +7,15 @@ import dukeComponents.TaskList;
 import dukeComponents.UI;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class AddCommand extends Command {
     private Task taskToAdd;
 
-    public AddCommand (String taskType, String taskDetails) {
+    public AddCommand (String taskType, String taskDetails) throws ParseException{
         String taskName = "";
         String dateTime = "";
         switch (taskType) {
@@ -23,6 +27,12 @@ public class AddCommand extends Command {
                 SplitTaskNameAndTime splitInput = new SplitTaskNameAndTime(taskDetails);
                 taskName = splitInput.getTaskName();
                 dateTime = splitInput.getTime();
+
+                DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
+                Date parsed = inputFormat.parse(dateTime);
+                DateFormat outputFormat = new SimpleDateFormat("dd MMMMM yyyy, h.mm a");
+                dateTime = outputFormat.format(parsed);
+
                 switch (taskType) {
                     case "event":
                         this.taskToAdd = new Event(taskName, dateTime);
@@ -37,15 +47,15 @@ public class AddCommand extends Command {
 
     public void execute (TaskList taskList, UI ui, Storage storage) {
         taskList.addTask(this.taskToAdd);
-        ui.printLines("Got it. I've added this task:",
-        this.taskToAdd.toString(),
-        "Now you have " + taskList.getNumberOfTasks() + " tasks in the list.");
         try {
             storage.saveTasksToFile(taskList.getAllTasks());
         }
         catch (IOException e) {
             ui.printLines("IO Exception");
         }
+        ui.printLines("Got it. I've added this task:",
+                this.taskToAdd.toString(),
+                "Now you have " + taskList.getNumberOfTasks() + " tasks in the list.");
     }
 
 }
