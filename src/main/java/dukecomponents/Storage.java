@@ -1,7 +1,9 @@
-package dukeComponents;
+package dukecomponents;
 
-import Task.*;
-
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.ToDo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -49,15 +51,15 @@ public class Storage {
         Task task = null;
         boolean isDone = (taskInputs[1].equals("1"));
         switch (taskInputs[0]) {
-            case "T":
-                task = new ToDo(taskInputs[2]);
-                break;
-            case "D":
-                task = new Deadline(taskInputs[2], taskInputs[3]);
-                break;
-            case "E":
-                task = new Event(taskInputs[2], taskInputs[3]);
-                break;
+        case "T":
+            task = new ToDo(taskInputs[2]);
+        break;
+        case "D":
+            task = new Deadline(taskInputs[2], taskInputs[3]);
+        break;
+        case "E":
+            task = new Event(taskInputs[2], taskInputs[3]);
+        break;
         }
         if (isDone) {
             task.markAsDone();
@@ -73,17 +75,18 @@ public class Storage {
         String taskName = (task.getTaskName());
         String taskTime = "";
         switch (task.getTaskType()) {
-            case TODO:
-                taskInitial = "T";
-                break;
-            case EVENT:
-                taskInitial = "E";
-                taskTime = task.getTaskTime();
-                break;
-            case DEADLINE:
-                taskInitial = "D";
-                taskTime = task.getTaskTime();
-                break;
+        case TODO:
+            taskInitial = "T";
+        break;
+        case EVENT:
+            taskInitial = "E";
+            taskTime = task.getTaskTime();
+        break;
+        case DEADLINE:
+            taskInitial = "D";
+            taskTime = task.getTaskTime();
+        break;
+        default:
         }
         return taskInitial + separator + taskDone + separator + taskName + separator + taskTime + "\n";
     }

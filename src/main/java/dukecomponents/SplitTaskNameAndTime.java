@@ -1,4 +1,4 @@
-package dukeComponents;
+package dukecomponents;
 
 import java.util.Scanner;
 
@@ -11,9 +11,11 @@ public class SplitTaskNameAndTime {
         boolean timeFound = false;
         String time = "";
         String taskName = "";
-        while(splitInput.hasNext()) {
+        while (splitInput.hasNext()) {
             String next = splitInput.next();
-            if (timeFound) { time = time + " " + next; }
+            if (timeFound) {
+                time = time + " " + next;
+            }
             else {
                 if (next.equals("/by") || next.equals("/at")) {
                     timeFound = true;

@@ -1,12 +1,12 @@
-package dukeComponents;
+package dukecomponents;
 
-import Task.Task;
+import tasks.Task;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TaskList {
-    private ArrayList <Task> taskList = new ArrayList<>();
+    private ArrayList<Task> taskList;
 
     public TaskList(ArrayList<Task> loadedTasks) {
         this.taskList = loadedTasks;
@@ -43,7 +43,7 @@ public class TaskList {
 
     public ArrayList<Task> getMatchingTasks(String keyword) {
         ArrayList<Task> matchingTasks = new ArrayList();
-        for(int i = 0; i < this.taskList.size(); i ++) {
+        for (int i = 0; i < this.taskList.size(); i++) {
             String taskName = this.taskList.get(i).getTaskName();
             Scanner parseTaskName = new Scanner(taskName);
             while (parseTaskName.hasNext()) {

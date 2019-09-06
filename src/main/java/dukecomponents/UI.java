@@ -1,4 +1,4 @@
-package dukeComponents;
+package dukecomponents;
 
 import java.util.Scanner;
 
@@ -40,4 +40,5 @@ public class UI {
     public void exit() {
         this.printLines("Bye. Hope to see you again soon!");
     }
+
 }

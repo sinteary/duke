@@ -1,4 +1,4 @@
-package Task;
+package tasks;
 
 public class ToDo extends Task {
     private TaskType taskType = TaskType.TODO;

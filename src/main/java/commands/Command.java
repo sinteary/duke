@@ -1,5 +1,5 @@
-package Commands;
-import dukeComponents.*;
+package commands;
+import dukecomponents.*;
 
 
 public abstract class Command {

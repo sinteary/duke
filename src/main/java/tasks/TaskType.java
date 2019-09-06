@@ -1,4 +1,4 @@
-package Task;
+package tasks;
 
 public enum TaskType {
     TODO, DEADLINE, EVENT;

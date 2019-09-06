@@ -1,11 +1,9 @@
-import Commands.Command;
-import Task.Task;
-import dukeComponents.Parser;
-import dukeComponents.Storage;
-import dukeComponents.TaskList;
-import dukeComponents.UI;
-import dukeExceptions.DukeException;
-
+import commands.Command;
+import dukecomponents.Parser;
+import dukecomponents.Storage;
+import dukecomponents.TaskList;
+import dukecomponents.UI;
+import dukeexceptions.DukeException;
 import java.text.ParseException;
 import java.util.NoSuchElementException;
 
@@ -30,8 +28,6 @@ public class Duke {
         this.ui.greet();
         boolean isExit = false;
         String userInput;
-        String command; String taskDetails;
-        Task task = null;
 
         while (!isExit) {
             userInput = this.ui.readCommand();
@@ -39,17 +35,13 @@ public class Duke {
                 Command c = Parser.parse(userInput);
                 c.execute(this.taskList, this.ui, this.storage);
                 isExit = c.isExit();
-            }
-            catch (DukeException e) {
+            } catch (DukeException e) {
                 this.ui.printLines(e.getMessage());
-            }
-            catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 this.ui.printLines("Oops! This task does not exist and cannot be removed!");
-            }
-            catch (NoSuchElementException e) {
+            } catch (NoSuchElementException e) {
                 this.ui.printLines("Please give me an instruction :)");
-            }
-            catch (ParseException e) {
+            } catch (ParseException e) {
                 this.ui.printLines("☹ OOPS!!! I don't recognize the date and time you entered.",
                 "Please enter your date and time in this format: dd/MM/yyyy HHmm", "Example: 2/12/2019 1830 means 2 December 2019, 6.30pm");
             }

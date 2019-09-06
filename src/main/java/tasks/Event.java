@@ -1,4 +1,4 @@
-package Task;
+package tasks;
 
 public class Event extends Task {
     private TaskType taskType = TaskType.EVENT;

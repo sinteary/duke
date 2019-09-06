@@ -1,8 +1,8 @@
-package Commands;
+package commands;
 
-import dukeComponents.Storage;
-import dukeComponents.TaskList;
-import dukeComponents.UI;
+import dukecomponents.Storage;
+import dukecomponents.TaskList;
+import dukecomponents.UI;
 
 import java.io.IOException;
 

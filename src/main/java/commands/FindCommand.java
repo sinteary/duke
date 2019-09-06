@@ -1,7 +1,7 @@
-package Commands;
+package commands;
 
-import Task.Task;
-import dukeComponents.*;
+import tasks.Task;
+import dukecomponents.*;
 import java.util.ArrayList;
 
 public class FindCommand extends Command{

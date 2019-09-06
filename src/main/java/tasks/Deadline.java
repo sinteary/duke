@@ -1,4 +1,4 @@
-package Task;
+package tasks;
 
 public class Deadline extends Task {
     private TaskType taskType = TaskType.DEADLINE;
