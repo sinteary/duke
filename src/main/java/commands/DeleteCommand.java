@@ -14,15 +14,19 @@ public class DeleteCommand extends Command{
     }
 
     public void execute (TaskList taskList, UI ui, Storage storage) {
-        taskList.removeTask(taskNumber);
+        try {
+            ui.printLines("Got it. I've removed this task:",
+                taskList.getTask(this.taskNumber).toString(),
+                "Now you have " + (taskList.getNumberOfTasks()-1) + " tasks in the list.");
+            taskList.removeTask(this.taskNumber);
+        } catch (IndexOutOfBoundsException e) {
+            ui.printLines("Oops! This task does not exist and cannot be removed!");
+        }
         try {
             storage.saveTasksToFile(taskList.getAllTasks());
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             ui.printLines("IO Exception");
         }
-        ui.printLines("Got it. I've removed this task:",
-                taskList.getTask(taskNumber).toString(),
-                "Now you have " + taskList.getNumberOfTasks() + " tasks in the list.");
+
     }
 }

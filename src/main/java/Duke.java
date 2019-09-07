@@ -37,8 +37,6 @@ public class Duke {
                 isExit = c.isExit();
             } catch (DukeException e) {
                 this.ui.printLines(e.getMessage());
-            } catch (IndexOutOfBoundsException e) {
-                this.ui.printLines("Oops! This task does not exist and cannot be removed!");
             } catch (NoSuchElementException e) {
                 this.ui.printLines("Please give me an instruction :)");
             } catch (ParseException e) {
