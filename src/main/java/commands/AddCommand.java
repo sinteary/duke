@@ -17,10 +17,16 @@ import tasks.ToDo;
 
 public class AddCommand extends Command {
     private Task taskToAdd;
+    private String taskName = "";
+    private String dateTime = "";
 
-    public AddCommand (String taskType, String taskDetails) throws ParseException{
-        String taskName = "";
-        String dateTime = "";
+    @Override
+    public boolean equals(Object obj) {
+        AddCommand addCommand = (AddCommand) obj;
+        return this.taskName.equals(addCommand.taskName) && this.dateTime.equals(addCommand.dateTime);
+    }
+
+    public AddCommand (String taskType, String taskDetails) throws ParseException {
         switch (taskType) {
         case "todo":
             this.taskToAdd = new ToDo(taskDetails);

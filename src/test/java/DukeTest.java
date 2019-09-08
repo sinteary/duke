@@ -1,7 +1,11 @@
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Test;
+
+
 public class DukeTest {
-    public void dummyTest(){
+    @Test
+    public void dummyTest() {
         assertEquals(2, 2);
     }
 }
