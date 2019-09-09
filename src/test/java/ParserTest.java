@@ -1,14 +1,19 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import commands.AddCommand;
+import commands.Command;
+import commands.DoneCommand;
 import dukecomponents.Parser;
-import commands.*;
 import dukeexceptions.DukeException;
 import dukeexceptions.InvalidInputException;
+import dukeexceptions.NoSuchTaskNumberException;
 import dukeexceptions.NoTaskDescriptionException;
 import dukeexceptions.NoTaskNumberSpecifiedException;
 import java.text.ParseException;
 import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class ParserTest {
 
@@ -19,7 +24,8 @@ public class ParserTest {
   String command3 = "deadline Deck the halls /by 10/09/2020 1500";
 
   @Test
-  public void parse_addCommand_success () throws NoTaskDescriptionException, NoTaskNumberSpecifiedException, InvalidInputException, ParseException {
+  public void parse_addCommand_success ()
+      throws NoTaskDescriptionException, NoTaskNumberSpecifiedException, InvalidInputException, ParseException, NoSuchTaskNumberException {
     Command testCommand1 = parser.parse(command1);
     assertEquals(testCommand1, new AddCommand("todo", "Eat lunch"));
     Command testCommand2 = parser.parse(command2);
@@ -28,20 +34,28 @@ public class ParserTest {
     assertEquals(testCommand3, new AddCommand("deadline", "Deck the halls /by 10/09/2020 1500"));
   }
 
-  int n = 3;
-  String command4 = "todo";
-  String command5 = "deadline";
-  String command6 = "event";
-
-  String[] exceptionCommands = {"todo","deadline","event"};
-
-  @Test
-  public void exceptionTesting () throws NoTaskDescriptionException, NoTaskNumberSpecifiedException, InvalidInputException, ParseException {
-    for (int i = 0; i < n; n++) {
-      DukeException exception = assertThrows(DukeException.class, () -> parser.parse(exceptionCommands[i]));
-      assertEquals(("☹ OOPS!!! The description of a " + exceptionCommands[i] + " cannot be empty."), exception.getMessage());
-    }
+  @ParameterizedTest
+  @ValueSource(strings = {"todo","deadline","event"})
+  public void parse_addCommand_noTaskDescriptionExceptionThrown (String command) throws DukeException, ParseException {
+      DukeException exception = assertThrows(DukeException.class, () -> parser.parse(command));
+      assertEquals(("OOPS!!! The description of a " + command + " cannot be empty."), exception.getMessage());
   }
+
+  @ParameterizedTest
+  @ValueSource(strings = {"todo","deadline","event"})
+  public void parse_addCommand_invalidDateTime (String command) throws DukeException, ParseException {
+    DukeException exception = assertThrows(DukeException.class, () -> parser.parse(command));
+    assertEquals(("OOPS!!! The description of a " + command + " cannot be empty."), exception.getMessage());
+  }
+
+
+  @ParameterizedTest
+  @ValueSource(strings = {"1", "2", "0", "-999"})
+  public void parse_doneCommand_success(String command)
+      throws NoTaskDescriptionException, NoTaskNumberSpecifiedException, InvalidInputException, ParseException, NoSuchTaskNumberException {
+      assertEquals(new DoneCommand(command), parser.parse("done " + command));
+  }
+
 
 
 
