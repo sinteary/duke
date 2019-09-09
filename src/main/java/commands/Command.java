@@ -1,5 +1,6 @@
 package commands;
 import dukecomponents.*;
+import dukeexceptions.NoSuchTaskNumberException;
 
 
 public abstract class Command {
@@ -17,6 +18,7 @@ public abstract class Command {
         this.isExit = true;
     }
 
-    public abstract void execute(TaskList taskList, UI printer, Storage storage);
+    public abstract void execute(TaskList taskList, UI printer, Storage storage)
+        throws NoSuchTaskNumberException;
 
 }

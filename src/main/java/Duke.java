@@ -4,7 +4,6 @@ import dukecomponents.Storage;
 import dukecomponents.TaskList;
 import dukecomponents.UI;
 import dukeexceptions.DukeException;
-import java.text.ParseException;
 import java.util.NoSuchElementException;
 
 public class Duke {
@@ -39,9 +38,6 @@ public class Duke {
                 this.ui.printLines(e.getMessage());
             } catch (NoSuchElementException e) {
                 this.ui.printLines("Please give me an instruction :)");
-            } catch (ParseException e) {
-                this.ui.printLines("☹ OOPS!!! I don't recognize the date and time you entered.",
-                "Please enter your date and time in this format: dd/MM/yyyy HHmm", "Example: 2/12/2019 1830 means 2 December 2019, 6.30pm");
             }
         }
     }

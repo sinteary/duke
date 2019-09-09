@@ -7,17 +7,16 @@ import commands.DoneCommand;
 import commands.ExitCommand;
 import commands.FindCommand;
 import commands.ListCommand;
+import dukeexceptions.DukeException;
 import dukeexceptions.InvalidInputException;
 import dukeexceptions.NoTaskDescriptionException;
 import dukeexceptions.NoTaskNumberSpecifiedException;
-
-import java.text.ParseException;
 import java.util.Scanner;
 
 public class Parser {
     private static Command command;
 
-    public static Command parse(String fullCommand) throws NoTaskDescriptionException, NoTaskNumberSpecifiedException, InvalidInputException, ParseException {
+    public static Command parse(String fullCommand) throws DukeException {
         Scanner scanner = new Scanner(fullCommand);
         String userCommand = scanner.next();
         String commandDetails = "";
@@ -42,7 +41,7 @@ public class Parser {
                 default:
                     throw new NoTaskDescriptionException(userCommand);
                 }
-                }
+            }
                 switch (userCommand) {
                 case "todo":
                 case "event":

@@ -4,7 +4,7 @@ import dukecomponents.SplitTaskNameAndTime;
 import dukecomponents.Storage;
 import dukecomponents.TaskList;
 import dukecomponents.UI;
-
+import dukeexceptions.InvalidDateTimeException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -26,7 +26,7 @@ public class AddCommand extends Command {
         return this.taskName.equals(addCommand.taskName) && this.dateTime.equals(addCommand.dateTime);
     }
 
-    public AddCommand (String taskType, String taskDetails) throws ParseException {
+    public AddCommand (String taskType, String taskDetails) throws InvalidDateTimeException {
         switch (taskType) {
         case "todo":
             this.taskToAdd = new ToDo(taskDetails);
@@ -37,10 +37,14 @@ public class AddCommand extends Command {
             taskName = splitInput.getTaskName();
             dateTime = splitInput.getTime();
 
-            DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
-            Date parsed = inputFormat.parse(dateTime);
-            DateFormat outputFormat = new SimpleDateFormat("dd MMMMM yyyy, h.mm a");
-            dateTime = outputFormat.format(parsed);
+            try {
+                DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
+                Date parsed = inputFormat.parse(dateTime);
+                DateFormat outputFormat = new SimpleDateFormat("dd MMMMM yyyy, h.mm a");
+                dateTime = outputFormat.format(parsed);
+            } catch (ParseException e) {
+                throw new InvalidDateTimeException();
+            }
 
             switch (taskType) {
             case "event":
