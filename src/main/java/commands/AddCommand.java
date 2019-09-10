@@ -40,7 +40,7 @@ public class AddCommand extends Command {
         case "deadline":
             SplitTaskNameAndTime splitInput = new SplitTaskNameAndTime(taskDetails);
             taskName = splitInput.getTaskName();
-            dateTime = splitInput.getTime();
+            dateTime = splitInput.getDateTime();
 
             try {
                 DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy HHmm");
