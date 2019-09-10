@@ -6,10 +6,6 @@ import commands.Command;
 import commands.DoneCommand;
 import dukecomponents.Parser;
 import dukeexceptions.DukeException;
-import dukeexceptions.InvalidInputException;
-import dukeexceptions.NoSuchTaskNumberException;
-import dukeexceptions.NoTaskDescriptionException;
-import dukeexceptions.NoTaskNumberSpecifiedException;
 import java.text.ParseException;
 import org.junit.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,7 +21,7 @@ public class ParserTest {
 
   @Test
   public void parse_addCommand_success ()
-      throws NoTaskDescriptionException, NoTaskNumberSpecifiedException, InvalidInputException, ParseException, NoSuchTaskNumberException {
+      throws DukeException {
     Command testCommand1 = parser.parse(command1);
     assertEquals(testCommand1, new AddCommand("todo", "Eat lunch"));
     Command testCommand2 = parser.parse(command2);
@@ -51,13 +47,8 @@ public class ParserTest {
 
   @ParameterizedTest
   @ValueSource(strings = {"1", "2", "0", "-999"})
-  public void parse_doneCommand_success(String command)
-      throws NoTaskDescriptionException, NoTaskNumberSpecifiedException, InvalidInputException, ParseException, NoSuchTaskNumberException {
+  public void parse_doneCommand_success(String command) throws DukeException {
       assertEquals(new DoneCommand(command), parser.parse("done " + command));
   }
-
-
-
-
 
 }
