@@ -10,9 +10,9 @@ import java.util.NoSuchElementException;
  * <h1>Duke Task Manager</h1>
  * Implements a task manager which can track 3 types of tasks.
  * <p></p>
- * It contains a <code>UI</code> class to deal with user interactions,
- * a <code>TaskList</code> class to keep track of all tasks, a
- * <code>Storage</code> class to save and load the data. The <code>Parser</code>
+ * It contains a {@code UI} class to deal with user interactions,
+ * a {@code TaskList} class to keep track of all tasks, a
+ * {@code Storage} class to save and load the data. The {@code Parser}
  * class is used to make sense of the user input and carry out instructions.
  */
 public class Duke {
@@ -21,6 +21,11 @@ public class Duke {
     private Storage storage;
     static String filePath = "data.txt";
 
+    /**
+     * Constructor for {@code Duke} class.
+     *
+     * @param filePath Indicates the path to a file in the hard disk where tasks are stored to or loaded from.
+     */
     public Duke(String filePath) {
         this.ui = new UI();
         this.storage = new Storage(filePath);
@@ -29,8 +34,8 @@ public class Duke {
 
     /**
      * This is the main method which makes use of Duke.run() method.
+     *
      * @param args Unused.
-     * @return Nothing.
      */
     public static void main(String[] args) {
         Duke duke = new Duke(filePath);
@@ -40,7 +45,6 @@ public class Duke {
     /**
      * Runs the main process of Duke. Accepts input from the user
      * and executes user commands.
-     * @return Nothing.
      */
     private void run() {
         this.ui.greet();
