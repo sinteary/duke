@@ -13,9 +13,22 @@ import dukeexceptions.NoTaskDescriptionException;
 import dukeexceptions.NoTaskNumberSpecifiedException;
 import java.util.Scanner;
 
+/**
+ * A class which helps to make sense of the user input by separating the command
+ * type and command details, and creating a corresponding command which can be
+ * executed to fulfill the user's instruction.
+ */
 public class Parser {
     private static Command command;
 
+    /**
+     * Makes sense of the user input to return a {@code Command} which corresponds
+     * to the user's instruction.
+     *
+     * @param fullCommand A String representing the full line of user input.
+     * @return A Command corresponding to the instruction given by the user.
+     * @throws DukeException If the user input is invalid or incomplete.
+     */
     public static Command parse(String fullCommand) throws DukeException {
         Scanner scanner = new Scanner(fullCommand);
         String userCommand = scanner.next();

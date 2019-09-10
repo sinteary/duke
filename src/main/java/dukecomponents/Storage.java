@@ -11,13 +11,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class representing a storage space which saves the task list to the hard disk,
+ * or loads the task list from the hard disk each time {@code Duke} is run.
+ */
 public class Storage {
     private String filePath;
 
+    /**
+     * Constructor for the {@code Storage} class.
+     *
+     * @param filePath The location of the file that stores the task list data.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads previously saved tasks from a file in the hard disk into a task list.
+     *
+     * @return An ArrayList of previously saved tasks loaded from the hard disk.
+     */
     public ArrayList<Task> loadTasksFromFile() {
         ArrayList<Task> taskList = new ArrayList<>();
         try {
@@ -34,6 +48,12 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Saves the tasks in the task list into a file on the hard disk.
+     *
+     * @param taskList The task list to be saved onto the hard disk.
+     * @throws IOException If the file in the hard disk cannot be found.
+     */
     public void saveTasksToFile(ArrayList<Task> taskList) throws IOException {
         File dataFile = new File(filePath);
         FileWriter fileWriter = new FileWriter(dataFile);
@@ -45,7 +65,14 @@ public class Storage {
         fileWriter.close();
     }
 
-    //Converts a string into Task
+    /**
+     * Returns a {@code Task} based on a line in the hard disk file which
+     * describes it. Used when loading tasks from the hard disk to make sense of the
+     * different formatting in the file.
+     *
+     * @param fileLine A line in the file which stores information about the task.
+     * @return A {@code Task} with information as described by the fileLine.
+     */
     public Task fileToTask(String fileLine) {
         String[] taskInputs = fileLine.split(" \\| ");
         Task task = null;
@@ -67,7 +94,13 @@ public class Storage {
         return task;
     }
 
-    //converts a string (in file format) to task
+    /**
+     * Returns a String which describes a {@code Task} in the task list in
+     * a particular format used in the hard disk file.
+     *
+     * @param task Task to be converted into the file format.
+     * @return A String representing the task in the file format.
+     */
     public String taskToFile (Task task) {
         String separator = " | ";
         String taskInitial = "";
@@ -80,11 +113,11 @@ public class Storage {
         break;
         case EVENT:
             taskInitial = "E";
-            taskTime = task.getTaskTime();
+            taskTime = task.getTaskDateTime();
         break;
         case DEADLINE:
             taskInitial = "D";
-            taskTime = task.getTaskTime();
+            taskTime = task.getTaskDateTime();
         break;
         default:
         }
