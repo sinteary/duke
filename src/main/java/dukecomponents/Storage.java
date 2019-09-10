@@ -113,11 +113,11 @@ public class Storage {
         break;
         case EVENT:
             taskInitial = "E";
-            taskTime = task.getTaskTime();
+            taskTime = task.getTaskDateTime();
         break;
         case DEADLINE:
             taskInitial = "D";
-            taskTime = task.getTaskTime();
+            taskTime = task.getTaskDateTime();
         break;
         default:
         }
