@@ -37,7 +37,8 @@ public class DoneCommand extends Command{
     }
 
     /**
-     * Executes the command by marking the specified task in the task list as done.
+     * Executes the command by marking the specified task in the task list as done, and saves the updated task
+     * list to the hard disk. The user interface prints a confirmation.
      *
      * @param taskList The task list containing all tasks.
      * @param ui The user interface.

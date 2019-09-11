@@ -16,7 +16,7 @@ import tasks.Task;
 import tasks.ToDo;
 
 /**
- * Represents a command which allows the user to add a task to the task list of <code>Duke</code>.
+ * Represents a command which allows the user to add a task to the task list.
  */
 public class AddCommand extends Command {
     private Task taskToAdd;

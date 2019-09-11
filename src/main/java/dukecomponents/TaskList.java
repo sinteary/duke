@@ -100,4 +100,11 @@ public class TaskList {
         return matchingTasks;
     }
 
+    /**
+     * Clears all tasks in the list. Used for testing/debugging purposes.
+     */
+    public void clearAllTasks() {
+        this.taskList = new ArrayList<>();
+    }
+
 }

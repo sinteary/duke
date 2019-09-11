@@ -25,8 +25,8 @@ public class Parser {
      * Makes sense of the user input to return a {@code Command} which corresponds
      * to the user's instruction.
      *
-     * @param fullCommand A String representing the full line of user input.
-     * @return A Command corresponding to the instruction given by the user.
+     * @param fullCommand A string representing the full line of user input.
+     * @return A {@code Command} corresponding to the instruction given by the user.
      * @throws DukeException If the user input is invalid or incomplete.
      */
     public static Command parse(String fullCommand) throws DukeException {

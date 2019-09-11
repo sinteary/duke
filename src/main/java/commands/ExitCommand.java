@@ -7,7 +7,8 @@ import dukecomponents.*;
 public class ExitCommand extends Command{
 
     /**
-     * Executes the command which allows the user to exit {@code Duke}.
+     * Executes the command which allows the user to exit {@code Duke}. The user interface
+     * prints an exit message.
      *
      * @param taskList The task list containing all tasks.
      * @param ui The user interface.
