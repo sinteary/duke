@@ -6,7 +6,6 @@ import commands.Command;
 import commands.DoneCommand;
 import dukecomponents.Parser;
 import dukeexceptions.DukeException;
-import java.text.ParseException;
 import org.junit.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -32,18 +31,17 @@ public class ParserTest {
 
   @ParameterizedTest
   @ValueSource(strings = {"todo","deadline","event"})
-  public void parse_addCommand_noTaskDescriptionExceptionThrown (String command) throws DukeException, ParseException {
+  public void parse_addCommand_noTaskDescriptionExceptionThrown (String command) throws DukeException {
       DukeException exception = assertThrows(DukeException.class, () -> parser.parse(command));
       assertEquals(("OOPS!!! The description of a " + command + " cannot be empty."), exception.getMessage());
   }
 
   @ParameterizedTest
   @ValueSource(strings = {"todo","deadline","event"})
-  public void parse_addCommand_invalidDateTime (String command) throws DukeException, ParseException {
+  public void parse_addCommand_invalidDateTime (String command) throws DukeException {
     DukeException exception = assertThrows(DukeException.class, () -> parser.parse(command));
     assertEquals(("OOPS!!! The description of a " + command + " cannot be empty."), exception.getMessage());
   }
-
 
   @ParameterizedTest
   @ValueSource(strings = {"1", "2", "0", "-999"})
@@ -51,4 +49,10 @@ public class ParserTest {
       assertEquals(new DoneCommand(command), parser.parse("done " + command));
   }
 
+  @ParameterizedTest
+  @ValueSource(strings = {"blah", "e", "hola"})
+  public void parse_invalidInputException (String command) throws DukeException {
+    DukeException exception = assertThrows(DukeException.class, () -> parser.parse(command));
+    assertEquals("OOPS!!! I'm sorry, but I don't know what that means :-(", exception.getMessage());
+  }
 }
