@@ -14,7 +14,7 @@ public class FindCommand extends Command{
     /**
      * Constructor for the {@code FindCommand} class.
      *
-     * @param keyword indicates the keyword used to find matching tasks
+     * @param keyword Indicates the keyword used to find matching tasks.
      */
     public FindCommand (String keyword) {
         this.keyword = keyword;

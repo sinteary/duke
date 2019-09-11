@@ -38,7 +38,7 @@ public class SplitTaskNameAndTime {
     }
 
     /**
-     * Returns the task name, parsed from the user input
+     * Returns the task name, parsed from the user input.
      *
      * @return The task name.
      */

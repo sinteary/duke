@@ -12,8 +12,8 @@ public abstract class Command {
     private boolean isExit;
 
     /**
-     * Class Constructor for Command.
-     * By default, it sets the boolean <code>isExit</code> to false.
+     * Class Constructor for {@code Command}.
+     * By default, it sets the boolean {@code isExit} to false.
      * The boolean {@code isExit} will be read by {@code Duke}.
      * If {@code isExit} is false, {@code Duke} will continue reading.
      * Else,it will stop reading and signal {@code Duke} to terminate.
@@ -22,6 +22,9 @@ public abstract class Command {
         this.isExit = false;
     }
 
+    /**
+     * Sets the {@code isExit} boolean value to true.
+     */
     public void setExit() {
         this.isExit = true;
     }
