@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 /**
  * <h1>Duke Task Manager</h1>
  * Implements a task manager which can track 3 types of tasks.
- * <p></p>
+ *
  * It contains a {@code UI} class to deal with user interactions,
  * a {@code TaskList} class to keep track of all tasks, a
  * {@code Storage} class to save and load the data. The {@code Parser}
