@@ -11,6 +11,8 @@ public class DeadlineTest {
     assertEquals("[D][\u2718] Finish homework (by: 12 September 2019, 6.00pm)", deadline1.toString());
     Deadline deadline2 = new Deadline("Submit appeal", "13 September 2019, 2.00pm");
     assertEquals("[D][\u2718] Submit appeal (by: 13 September 2019, 2.00pm)", deadline2.toString());
+    Deadline deadline3 = new Deadline("Project submission", "Mon 5pm");
+    assertEquals("[D][\u2718] Project submission (by: Mon 5pm)", deadline3.toString());
   }
 
   @Test
@@ -19,6 +21,8 @@ public class DeadlineTest {
     assertEquals("12 September 2019, 6.00pm", deadline1.getTaskDateTime());
     Deadline deadline2 = new Deadline("Submit appeal", "13 September 2019, 2.00pm");
     assertEquals("13 September 2019, 2.00pm", deadline2.getTaskDateTime());
+    Deadline deadline3 = new Deadline("Project submission", "Mon 5pm");
+    assertEquals("Mon 5pm", deadline3.getTaskDateTime());
   }
 
 }

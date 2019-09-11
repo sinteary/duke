@@ -11,6 +11,9 @@ public class ToDoTest {
     assertEquals("[T][\u2718] Finish homework", todo1.toString());
     ToDo todo2 = new ToDo("Submit appeal");
     assertEquals("[T][\u2718] Submit appeal", todo2.toString());
+    ToDo todo3 = new ToDo("Make tea");
+    assertEquals("[T][\u2718] Make tea", todo3.toString());
+
   }
 
   @Test
@@ -19,6 +22,8 @@ public class ToDoTest {
     assertEquals("Finish homework", todo1.getTaskName());
     ToDo todo2 = new ToDo("Submit appeal");
     assertEquals("Submit appeal", todo2.getTaskName());
+    ToDo todo3 = new ToDo("Make tea");
+    assertEquals("Make tea", todo3.getTaskName());
   }
 
 }
